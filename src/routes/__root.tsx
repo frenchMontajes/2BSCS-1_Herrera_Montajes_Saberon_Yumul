@@ -1,14 +1,11 @@
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { QueryClient } from "@tanstack/react-query";
-import { Session, User } from "@supabase/supabase-js";
+
 
 interface RootRouteContext {
   queryClient: QueryClient;
-  auth: {
-    user: User | null;
-    session: Session | null;
-  }
+
 }
 
 export const Route = createRootRouteWithContext<RootRouteContext>()({
