@@ -1,4 +1,6 @@
 import { Link } from "@tanstack/react-router";
+import { db } from "../lib/supabase";
+
 
 export const Navbar = () => {
   return (
@@ -12,7 +14,7 @@ export const Navbar = () => {
           <li className="p-4 hover:text-blue-700 hover:border-blue-700 cursor-pointer "><Link to="/books">Books</Link></li>
           <li className="p-4 hover:text-blue-700 hover:border-blue-700 cursor-pointer "><Link to="/about">About</Link></li>
           <li className="p-4 hover:text-blue-700 hover:border-blue-700 cursor-pointer"><Link to="/contact">Contact</Link></li>
-          <li className="p-4 hover:text-blue-700 hover:border-blue-700 cursor-pointer "><Link to="/auth/login">Sign in</Link></li>
+          <li className="p-4 hover:text-blue-700 hover:border-blue-700 cursor-pointer " onClick={()=> db.auth.signInWithOAuth({provider: 'google'})}>Sign in</li>
         </ul>
       </div>
     </div>
