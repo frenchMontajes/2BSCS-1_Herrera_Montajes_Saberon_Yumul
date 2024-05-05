@@ -11,10 +11,28 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ContactImport } from './routes/contact'
+import { Route as BooksImport } from './routes/books'
+import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthLoginImport } from './routes/auth.login'
 
 // Create/Update Routes
+
+const ContactRoute = ContactImport.update({
+  path: '/contact',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const BooksRoute = BooksImport.update({
+  path: '/books',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AboutRoute = AboutImport.update({
+  path: '/about',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -34,6 +52,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/about': {
+      preLoaderRoute: typeof AboutImport
+      parentRoute: typeof rootRoute
+    }
+    '/books': {
+      preLoaderRoute: typeof BooksImport
+      parentRoute: typeof rootRoute
+    }
+    '/contact': {
+      preLoaderRoute: typeof ContactImport
+      parentRoute: typeof rootRoute
+    }
     '/auth/login': {
       preLoaderRoute: typeof AuthLoginImport
       parentRoute: typeof rootRoute
@@ -43,6 +73,12 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexRoute, AuthLoginRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexRoute,
+  AboutRoute,
+  BooksRoute,
+  ContactRoute,
+  AuthLoginRoute,
+])
 
 /* prettier-ignore-end */
