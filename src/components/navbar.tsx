@@ -1,7 +1,5 @@
 import { db } from "../lib/supabase";
-import { Search } from "lucide-react";
-import { ShoppingCart } from "lucide-react";
-import {User} from "lucide-react";
+import { Search, ShoppingCart, User } from "lucide-react";
 
 const Menu = [
   {
