@@ -15,14 +15,13 @@ export const Contact = () => {
 
   return (
     <div className="relative bg-cover bg-center h-[calc(100vh-81.6px)] flex items-center justify-between px-40" style={{backgroundImage: "url('/12334.jpg')" }}>
-      <div className="space-y-2 mb-60 ml-20">
-        <div className="card">
+      <div className="card space-y-2 mb-20 mr-20">
           <p className="md:text-6xl sm:text-4xl text-2xl font-bold">Contact Us</p>
           <h1 className="text-xl font-medium mt-1.5 ml-1">Got an issue? Want to send feedback? Let us know.</h1>
-        </div>
       </div>
+      
       <div className="card relative bg-cover bg-center h-[calc(100vh-81.6px)] flex flex-col px-50"> 
-        <div className="mt-40 mr-20">
+        <div className="mt-20 mr-20">
           <h1 className="text-3xl font-bold mb-10 ml-10 text-center">Send Us a Message</h1>
           <div className="flex flex-wrap">
             <div>
