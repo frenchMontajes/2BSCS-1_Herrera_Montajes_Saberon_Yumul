@@ -3,7 +3,6 @@ import { Navbar } from "../components/navbar";
 import { Hero } from "../components/hero";
 //import {}
 
-
 //hompage
 export const Route = createFileRoute("/")({
   component: Component,
