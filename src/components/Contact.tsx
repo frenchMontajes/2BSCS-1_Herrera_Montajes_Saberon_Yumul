@@ -15,7 +15,7 @@ export const Contact = () => {
 
   return (
     <div className="relative bg-cover bg-center h-[calc(100vh-81.6px)] flex items-center justify-between px-40" style={{backgroundImage: "url('/12334.jpg')" }}>
-      <div className="card space-y-2 mb-20 mr-20">
+      <div className="card space-y-2 mb-40 mr-20">
           <p className="md:text-6xl sm:text-4xl text-2xl font-bold">Contact Us</p>
           <h1 className="text-xl font-medium mt-1.5 ml-1">Got an issue? Want to send feedback? Let us know.</h1>
       </div>
