@@ -1,6 +1,7 @@
 function AboutPage() {
   return (
-    <div className="container py-16 px-4" style={{ backgroundImage: "url('12334.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", minHeight: "90vh", minWidth: "98.8vw" }}>
+    <div className="container py-16 px-4" style={{ backgroundImage: "url('12334.jpg')", backgroundSize: "cover", backgroundPosition: "center", 
+                                                  backgroundRepeat: "no-repeat", minHeight: "90vh", minWidth: "98.8vw" }}>
       <div className="flex flex-col md:flex-row items-center justify-between">
         <div className="max-w-2xl text-left text-white pr-0 md:pr-8 md:pl-20 ml-8 mt-12 relative rounded-xl 
         overflow-hidden py-8"> 
