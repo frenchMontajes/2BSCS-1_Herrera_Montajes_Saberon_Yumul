@@ -2,8 +2,10 @@ import { ShoppingBag } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { db } from "../lib/supabase";
 import { BookType } from "../types";
+import { useEffect, useState } from "react";
 
 export const Book = () => {
+  const [cart, setCart] = useState<BookType[]>([])
   const { data, isFetching } = useQuery({
     queryKey: [],
     queryFn: async () =>  {
@@ -11,6 +13,7 @@ export const Book = () => {
         return data;
     }
   });
+  useEffect(()=>{console.log (cart)},[cart])
   if(isFetching) {
     return null;
   }
@@ -35,6 +38,7 @@ export const Book = () => {
               <div className="flex items-center justify-between mt-4">
                 <button
                   onClick={() => {
+                    setCart([...cart, book])
                     alert("Item added to cart!");
                   }}
                   className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md flex items-center"
