@@ -24,6 +24,11 @@ const Menu = [
   },
 ]
 
+const redirectToCartPage = () => {
+  // Redirect to the cart page
+  window.location.href = "/cart";
+};
+
 export const Navbar = () => {
   return (
     <div>
@@ -43,7 +48,7 @@ export const Navbar = () => {
         <div>
           <button onClick={()=> alert("Ordering not available yet")} 
           className="bg-red-400 text-black py-1 px-4 rounded-full flex items-center gap-3 group">
-            <ShoppingCart className="text-xl text-black drop-shadow-sm"/>
+            <ShoppingCart className="text-xl text-black drop-shadow-sm" onClick={redirectToCartPage}/>
           </button>
         </div>
         <div>

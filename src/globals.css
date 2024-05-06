@@ -10,7 +10,7 @@
     border: 1px solid hsla(0, 56%, 2%, 0.404);
     border-radius: 10px; 
     box-shadow: 2px 2px hsla(90, 4%, 27%, 0.781); 
-    padding: 20px; 
+       padding: 20px; 
     text-align: center right;
     max-width: 700px;
     display:    block;
@@ -18,16 +18,24 @@
 }
 
 .card2 {
+    /* Your card styles */
     border: 1px solid hsla(0, 56%, 2%, 0.404);
     border-radius: 10px; 
     box-shadow: 2px 2px hsla(90, 4%, 27%, 0.781); 
-    padding: 20px; 
-    text-align: center;
-    width: 300px;
-    height: auto; /* Set height to auto to adjust based on content */
-    display: block;
-    background-color: rgba(241, 232, 232, 0.658);   
+       padding: 20px; 
+    text-align: center right;
+    max-width: 700px;
+    display:    block;
+    background-color: rgba(241, 232, 232, 0.658); 
 }
+
+.card-body {
+    /* Your body styles */
+    padding: 20px;
+    /* Add margin-top to create space for the header */
+    margin-top: 30px; /* Adjust as needed */
+  }
+  
 
 .grid {
     display: grid;

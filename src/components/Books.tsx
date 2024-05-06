@@ -18,6 +18,11 @@ export const Book = () => {
     return null;
   }
 
+  const redirectToCartPage = () => {
+    // Redirect to the cart page
+    window.location.href = "/cart";
+  };
+
   return (
     <div className="container mx-auto px-4 py-8"> 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -46,10 +51,9 @@ export const Book = () => {
                   <ShoppingBag className="w-6 h-6 mr-2" />
                   Add to Cart
                 </button>
+                {/* Call redirectToCartPage function when Buy Now is clicked */}
                 <button
-                  onClick={() => {
-                    alert("Item bought now!");
-                  }}
+                  onClick={redirectToCartPage}
                   className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md flex items-center"
                 >
                   <ShoppingBag className="w-6 h-6 mr-2" />

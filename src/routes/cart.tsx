@@ -1,17 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Navbar } from '../components/navbar';
-import { Contact } from '../components/Contact';
+import { Navbar } from '../components/navbar'
+import { Cart } from '../components/Cart'
 
 
-export const Route = createFileRoute('/contact')({
+export const Route = createFileRoute('/cart')({
   component: Component,
-});
+})
 
 function Component() {
   return (
     <div className="bg-white h-screen w-">
       <Navbar />
-      <Contact/>
+      <Cart/>
     </div>
   )
 }
