@@ -16,3 +16,20 @@
     display:    block;
     background-color: rgba(241, 232, 232, 0.658);   
 }
+
+.card2 {
+    border: 1px solid hsla(0, 56%, 2%, 0.404);
+    border-radius: 10px; 
+    box-shadow: 2px 2px hsla(90, 4%, 27%, 0.781); 
+    padding: 20px; 
+    text-align: center;
+    width: 300px;
+    height: auto; /* Set height to auto to adjust based on content */
+    display: block;
+    background-color: rgba(241, 232, 232, 0.658);   
+}
+
+.grid {
+    display: grid;
+}
+
