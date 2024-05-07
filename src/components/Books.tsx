@@ -1,4 +1,4 @@
-import { ShoppingBag } from "lucide-react";
+import { Search, ShoppingBag } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { db } from "../lib/supabase";
 import { BookType } from "../types";
@@ -25,8 +25,10 @@ export const Book = () => {
 
   return (
     <div className="container mx-auto px-4 py-8"> 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      
+     <div className="relative group hidden sm:block">
+        <input type="search" placeholder="Search" className=" w-[200px]  sm:w-[200px] group-hover:w-[300px] flex transition-all duration-500 px-2 py-1  rounded-full focus:outline-1 focus:border-1 bg-white border-black border-2 bor"></input>
+        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-2">
         {data? data.map((book) => (
           <div
             key={book.book_id}

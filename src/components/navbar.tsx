@@ -36,15 +36,9 @@ export const Navbar = () => {
       <div>
         <div>
           <a href="#" className="font-bold text-2xl sm:text-3xl flex gap-2"> BookWorm </a>
-        </div>
-        
+        </div>    
       </div>
       <div className="flex justify-between items-between-center gap-4">
-        <div className="relative group hidden sm:block">
-        <input type="search" placeholder="Search" className=" w-[200px] sm:w-[200px] group-hover:w-[300px] transition-all duration-500 px-2 py-1 rounded-full focus:outline-none focus:border-1 bg-white border-black border-0"></input>
-        <Search
-        className="text-gray-500 group-hover:text-primary absolute top-1/2 -translate-y-1/2 right-3" />
-        </div>
         <div>
           <button onClick={()=> alert("Ordering not available yet")} 
           className="bg-red-400 text-black py-1 px-4 rounded-full flex items-center gap-3 group">
