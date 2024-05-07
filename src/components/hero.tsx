@@ -1,8 +1,9 @@
 import Slider from "react-slick";
-import ImageGallery from "react-image-gallery";
 import Image1 from "/book1.png";
 import Image2 from "/book2.png";
 import Image3 from "/book3.png";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css"
 
 export const Hero = () => {
   const ImageList = [
@@ -36,14 +37,15 @@ export const Hero = () => {
     speed: 800,
     slidesToScroll: 1,
     autoPlay: true,
-    autoPlaySpeed: 2000,
+    autoPlaySpeed: 1,
     cssEase: "ease-in-out",
     pauseOnHover: false,
     pauseOnFocus: false,
   };
 
   return (
-    <div className="relative bg-cover bg-center h-[600px] flex items-center justify-between px-40" style={{ backgroundImage: "url('/12334.jpg')" }}>
+    <div className="relative bg-center bg-size flex items-center justify-between px-40" style={{ backgroundImage: "url('12334.jpg')", backgroundSize: "cover", 
+    backgroundPosition: "center", backgroundRepeat: "no-repeat", minHeight: "90vh", minWidth: "98.8vw"}}>
       <div className="relative overflow-hidden flex justify-center items-center dark-text-white duration-500">
         <div className="container pb-8 sm:pb-0">
           <Slider {...sliderSettings}>
