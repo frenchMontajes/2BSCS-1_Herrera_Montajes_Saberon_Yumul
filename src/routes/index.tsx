@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "../components/navbar";
 import { Hero } from "../components/hero";
-//import {}
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css"
+
 
 //hompage
 export const Route = createFileRoute("/")({
@@ -10,9 +12,13 @@ export const Route = createFileRoute("/")({
 
 function Component() {
   return (
+
     <div className="bg-white h-screen w-">
       <Navbar />
-      <Hero />
+      <div>
+        <Hero />
+      </div>
+     
     </div>
   )
 }

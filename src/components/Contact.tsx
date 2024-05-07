@@ -60,7 +60,7 @@ export const Contact = () => {
               <button
                 type="submit"
                 value="Send"
-                className="mt-2 px-4 py-2 bg-slate-300 text-black rounded-lg border-2 border-black hover:bg-slate-400"
+                className="mt-2 px-4 py-2 bg-red-400 text-black rounded-lg border-2 border-black hover:bg-red-900"
                 disabled={isSubmitting} // Disable button during submission
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
