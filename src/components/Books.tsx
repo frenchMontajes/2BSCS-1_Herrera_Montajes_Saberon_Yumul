@@ -49,11 +49,37 @@ export const Book: React.FC<Props> = () => {
     setSearchQuery(e.target.value);
   };
 
-  const filterBooks = (books: BookType[], query: string) => {
-    const filtered = books.filter((book) =>
-      book.title.toUpperCase().startsWith(query.toUpperCase())
-    );
-    return filtered.length > 0 ? filtered : books;
+  const filterBooks = (books: BookType[], query: string): BookType[] => {
+    if (query === "") {
+      return books;
+    }
+  
+    const lowerCaseQuery = query.toLowerCase();
+    let left = 0;
+    let right = books.length - 1;
+    const filteredBooks: BookType[] = [];
+  
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      const book = books[mid];
+  
+      if (book) {
+        const bookTitle = book.title.toLowerCase();
+  
+        if (bookTitle.startsWith(lowerCaseQuery)) {
+          filteredBooks.push(book);
+          left = mid + 1; 
+        } else if (bookTitle < lowerCaseQuery) {
+          left = mid + 1;
+        } else {
+          right = mid - 1;
+        }
+      } else {
+        break;
+      }
+    }
+  
+    return filteredBooks;
   };
 
   if (isFetching) {
@@ -83,7 +109,7 @@ export const Book: React.FC<Props> = () => {
                 className="w-full h-64 object-cover"
               />
               <div className="p-4">
-                <h2 className="text-gray-800 text-xl font-semibold mb-2">
+              <h2 className="text-gray-800 text-xl font-semibold mb-2">
                   {searchQuery && book.title.toUpperCase().startsWith(searchQuery.toUpperCase()) ? (
                     <>
                       <b>{book.title.slice(0, searchQuery.length)}</b>
@@ -113,4 +139,3 @@ export const Book: React.FC<Props> = () => {
     </div>
   );
 };
-
