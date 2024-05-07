@@ -30,13 +30,14 @@ export const Hero = () => {
       }
   ];
 
+  // Ensure autoplay is enabled
   const sliderSettings = {
     dots: true,
     arrows: false,
     infinite: true,
     speed: 800,
     slidesToScroll: 1,
-    autoplay: true, 
+    autoplay: true, // Make sure this is set to true
     autoplaySpeed: 4000,
     cssEase: "ease-in-out",
     pauseOnHover: false,
