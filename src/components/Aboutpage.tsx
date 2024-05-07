@@ -1,3 +1,4 @@
+
 function AboutPage() {
   return (
     <div className="container py-16 px-4" style={{ backgroundImage: "url('12334.jpg')", backgroundSize: "cover", 

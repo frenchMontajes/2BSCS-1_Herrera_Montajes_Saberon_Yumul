@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Navbar } from '../components/navbar';
+import { Navbar } from '../components/navbar1';
 import { Contact } from '../components/Contact'
 
 export const Route = createFileRoute('/contact')({

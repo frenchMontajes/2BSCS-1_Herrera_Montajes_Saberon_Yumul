@@ -1,6 +1,7 @@
 import { db } from "../lib/supabase";
 import { Search, ShoppingCart, User } from "lucide-react";
 
+
 const Menu = [
   {
     id: 1,
@@ -32,7 +33,7 @@ export const Navbar = () => {
         <div>
           <a href="#" className="font-bold text-2xl sm:text-3xl flex gap-2"> BookWorm </a>
         </div>
-          
+        
       </div>
       <div className="flex justify-between items-between-center gap-4">
         <div className="relative group hidden sm:block">
