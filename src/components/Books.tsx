@@ -14,11 +14,11 @@ export const Book: React.FC<Props> = () => {
     queryKey: [],
     queryFn: async () => {
       const { data } = await db
-        .from('books')
+        .from("books")
         .select("*")
         .order("title", { ascending: true });
       return data || [];
-    }
+    },
   });
 
   const auth = useAuth();
@@ -38,7 +38,9 @@ export const Book: React.FC<Props> = () => {
     const updatedCart = [...cart, book];
     setCart(updatedCart);
     alert("Item added to cart!");
-    const error = await db.from('cart').insert([{ user_id: auth.session?.user.id, book_id: book.book_id }]);
+    const error = await db.from("cart").insert([
+      { user_id: auth.session?.user.id, book_id: book.book_id },
+    ]);
     console.log(error);
   };
 
@@ -51,26 +53,26 @@ export const Book: React.FC<Props> = () => {
     setSearchQuery(e.target.value);
   };
 
-  const searchBooks = (books: BookType[], query: string): BookType[] => {
-    const queryLower = query.toLowerCase();
-  
-    const filtered = books.filter(book => book.title.toLowerCase().includes(queryLower));
-    return filtered;
+  const filterBooks = (books: BookType[], query: string) => {
+    const filtered = books.filter((book) =>
+      book.title.toUpperCase().startsWith(query.toUpperCase())
+    );
+    return filtered.length > 0 ? filtered : books;
   };
 
   if (isFetching) {
     return null;
   }
 
-  const filteredBooks = searchQuery ? searchBooks(allBooks || [], searchQuery) : allBooks;
-  
+  const filteredBooks = searchQuery ? filterBooks(allBooks || [], searchQuery) : allBooks;
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="relative group hidden sm:block">
         <input
           type="search"
           placeholder="Search"
-          className="w-[200px]  sm:w-[200px] group-hover:w-[300px] flex transition-all duration-500 px-2 py-1  rounded-full focus:outline-1 focus:border-1 bg-white border-black border-2 bor"
+          className="w-[200px]  sm:w-[200px] group-hover:w-[300px] flex transition-all duration-500 px-2 py-1  rounded-full focus:outline-1 focus:border-1 bg-white border-black border-2 bor"
           onChange={handleSearch}
           value={searchQuery}
         />
@@ -78,18 +80,22 @@ export const Book: React.FC<Props> = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-3">
         {filteredBooks && filteredBooks.length > 0 ? (
           filteredBooks.map((book) => (
-            <div
-              key={book.book_id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden"
-            >
+            <div key={book.book_id} className="bg-white shadow-lg rounded-lg overflow-hidden">
               <img
-                src={book.picturebook}
-                alt={book.title}
+                src={book?.picturebook}
+                alt={book?.title}
                 className="w-full h-64 object-cover"
               />
               <div className="p-4">
                 <h2 className="text-gray-800 text-xl font-semibold mb-2">
-                  {book.title}
+                  {searchQuery && book.title.toUpperCase().startsWith(searchQuery.toUpperCase()) ? (
+                    <>
+                      <b>{book.title.slice(0, searchQuery.length)}</b>
+                      {book.title.slice(searchQuery.length)}
+                    </>
+                  ) : (
+                    book.title
+                  )}
                 </h2>
                 <div className="flex items-center justify-between mt-4">
                   <button
@@ -116,3 +122,4 @@ export const Book: React.FC<Props> = () => {
     </div>
   );
 };
+
