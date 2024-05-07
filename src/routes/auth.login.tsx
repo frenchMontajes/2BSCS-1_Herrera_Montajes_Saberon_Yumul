@@ -8,7 +8,6 @@ export const Route = createFileRoute('/auth/login')({
 // html 
 function Component() {
   const [count, setCount] = useState(1);
-
   
 
   return (

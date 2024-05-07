@@ -1,8 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Navbar } from '../components/navbar';
-import AddToCartPage from '../components/Addtocart1';
-
-export const Route = createFileRoute('/cartpage')({
+import { Checkout } from '../components/Checkout'
+export const Route = createFileRoute('/checkout')({
   component: Component, 
 });
 
@@ -10,7 +9,7 @@ function Component() {
   return (
     <div className="bg-white h-screen">
       <Navbar />
-      <AddToCartPage /> 
+      <Checkout />
     </div>
   );
 }
