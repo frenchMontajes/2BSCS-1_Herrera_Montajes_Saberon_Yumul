@@ -66,7 +66,7 @@ export const Navbar = () => {
           <div>
             <button
               onClick={redirectToCartPage}
-              className="bg-red-400 text-black py-1 px-4 rounded-full flex items-center gap-3 group relative"
+              className="bg-red-400 hover:bg-red-900 duration-500 text-black py-1 px-4 rounded-full flex items-center gap-3 group relative"
             >
               <ShoppingCart className="text-xl text-black drop-shadow-sm" />
               {cartCount > 0 && (
@@ -79,7 +79,7 @@ export const Navbar = () => {
           <div>
             <button
               onClick={() => db.auth.signInWithOAuth({ provider: "google" })}
-              className="bg-red-400  text-black py-1 px-4 rounded-full flex items-center gap-3 group"
+              className="bg-red-400  hover:bg-red-900 duration-500 text-black py-1 px-4 rounded-full flex items-center gap-3 group"
             >
               <User className="text-xl text-black drop-shadow-sm" />
             </button>

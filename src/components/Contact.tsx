@@ -1,6 +1,7 @@
 
 import React, { useRef, useState } from 'react';
 import emailjs from 'emailjs-com';
+
 export const Contact = () => {
   const form = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -10,13 +11,13 @@ export const Contact = () => {
       setIsSubmitting(true);
       emailjs.sendForm('service_4io8lwd', 'template_dz88lm9', form.current, 'bwh55ZhlrXXbto34T')
         .then(
-          (result) => {
+          (result: { text: any; }) => {
             console.log(result.text);
             setIsSubmitting(false);
             window.alert('Your message has been submitted successfully!'); // Show pop-up message
             window.location.reload(); // Refresh the page
           },
-          (error) => {
+          (error: { text: any; }) => {
             console.log(error.text);
             setIsSubmitting(false);
           }
