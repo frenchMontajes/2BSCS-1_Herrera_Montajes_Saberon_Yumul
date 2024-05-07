@@ -1,9 +1,9 @@
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Image1 from "/book1.png";
 import Image2 from "/book2.png";
 import Image3 from "/book3.png";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css"
 
 export const Hero = () => {
   const ImageList = [
@@ -15,19 +15,19 @@ export const Hero = () => {
         "Discover your next adventure with us! Dive into a world of possibilities by shopping our curated collection of captivating books today.",
     },
     {
-      id: 2,
-      img: Image2,
-      title: "Discover more",
-      description:
-        "Discover your next adventure with us! Dive into a world of possibilities by shopping our curated collection of captivating books today.",
-    },
-    {
-      id: 3,
-      img: Image3,
-      title: "Discover more",
-      description:
-        "Discover your next adventure with us! Dive into a world of possibilities by shopping our curated collection of captivating books today.",
-    },
+        id: 2,
+        img: Image2,
+        title: "Discover more",
+        description:
+          "Discover your next adventure with us! Dive into a world of possibilities by shopping our curated collection of captivating books today.",
+      },
+      {
+        id: 3,
+        img: Image3,
+        title: "Discover more",
+        description:
+          "Discover your next adventure with us! Dive into a world of possibilities by shopping our curated collection of captivating books today.",
+      }
   ];
 
   const sliderSettings = {
@@ -36,8 +36,8 @@ export const Hero = () => {
     infinite: true,
     speed: 800,
     slidesToScroll: 1,
-    autoPlay: true,
-    autoPlaySpeed: 1,
+    autoplay: true, 
+    autoplaySpeed: 4000,
     cssEase: "ease-in-out",
     pauseOnHover: false,
     pauseOnFocus: false,
@@ -48,7 +48,7 @@ export const Hero = () => {
     backgroundPosition: "center", backgroundRepeat: "no-repeat", minHeight: "90vh", minWidth: "98.8vw"}}>
       <div className="relative overflow-hidden flex justify-center items-center dark-text-white duration-500">
         <div className="container pb-8 sm:pb-0">
-          <Slider {...sliderSettings}>
+        <Slider {...sliderSettings}>
             {ImageList.map((data) => (
               <div key={data.id}>
                 <div className="grid grid-cols-1 sm:grid-cols-2">
