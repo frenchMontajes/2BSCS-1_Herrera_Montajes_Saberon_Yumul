@@ -2,16 +2,22 @@ import { ShoppingBag } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { db } from "../lib/supabase";
 import { BookType } from "../types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import { useAuth } from "../auth";
 
-export const Book = () => {
+interface Props {}
+
+export const Book: React.FC<Props> = () => {
   const [cart, setCart] = useState<BookType[]>([]);
-  const { data, isFetching } = useQuery({
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const { data: allBooks, isFetching } = useQuery<BookType[], unknown>({
     queryKey: [],
     queryFn: async () => {
-      const { data } = await db.from("books").select("*").returns<BookType[]>();
-      return data;
+      const { data } = await db
+        .from('books')
+        .select("*")
+        .order("title", { ascending: true });
+      return data || [];
     }
   });
 
@@ -29,30 +35,49 @@ export const Book = () => {
   }, [cart]);
 
   const addToCart = async (book: BookType) => {
-    const updatedCart = [...cart, book]; // Append the new book to the existing cart
-    setCart(updatedCart); 
+    const updatedCart = [...cart, book];
+    setCart(updatedCart);
     alert("Item added to cart!");
     const error = await db.from('cart').insert([{ user_id: auth.session?.user.id, book_id: book.book_id }]);
     console.log(error);
   };
-  
+
   const buyNow = (book: BookType) => {
     // Logic for handling buy now action...
     alert("Buy now functionality is not implemented yet.");
   };
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const searchBooks = (books: BookType[], query: string): BookType[] => {
+    const queryLower = query.toLowerCase();
   
+    const filtered = books.filter(book => book.title.toLowerCase().includes(queryLower));
+    return filtered;
+  };
+
   if (isFetching) {
     return null;
   }
 
+  const filteredBooks = searchQuery ? searchBooks(allBooks || [], searchQuery) : allBooks;
+  
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="relative group hidden sm:block">
-        <input type="search" placeholder="Search" className=" w-[200px]  sm:w-[200px] group-hover:w-[300px] flex transition-all duration-500 px-2 py-1  rounded-full focus:outline-1 focus:border-1 bg-white border-black border-2 bor"></input>
-        </div>
+        <input
+          type="search"
+          placeholder="Search"
+          className="w-[200px]  sm:w-[200px] group-hover:w-[300px] flex transition-all duration-500 px-2 py-1  rounded-full focus:outline-1 focus:border-1 bg-white border-black border-2 bor"
+          onChange={handleSearch}
+          value={searchQuery}
+        />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-3">
-        {data ? (
-          data.map((book) => (
+        {filteredBooks && filteredBooks.length > 0 ? (
+          filteredBooks.map((book) => (
             <div
               key={book.book_id}
               className="bg-white shadow-lg rounded-lg overflow-hidden"
