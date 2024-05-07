@@ -61,6 +61,11 @@ export const Hero = () => {
     pauseOnFocus: false,
   };
 
+  const redirectToBookPage = () => {
+    window.location.href = "/books";
+  };
+  
+
   return (
     <div className="relative bg-center bg-size flex items-center justify-between px-40" style={{ backgroundImage: "url('12334.jpg')", backgroundSize: "cover", 
     backgroundPosition: "center", backgroundRepeat: "no-repeat", minHeight: "90vh", minWidth: "98.8vw"}}>
@@ -75,7 +80,7 @@ export const Hero = () => {
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white px-3">{data.title}</h1>
                     <p className="text-sm text-justify text-white px-3">{data.description}</p>
                     <div className="px-3">
-                      <button className="bg-red-300 hover:scale-105 duration-300 text-black py-2 px-4 rounded-full">Shop Now</button>
+                      <button className="bg-red-300 hover:scale-105 duration-300 text-black py-2 px-4 rounded-full" onClick={redirectToBookPage}>Shop Now</button>
                     </div>
                   </div>
                   <div className="order-1 sm:order-2">
