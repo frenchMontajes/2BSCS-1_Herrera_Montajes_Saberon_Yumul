@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { db } from "../lib/supabase";
 import { BookType } from "../types";
 import { useEffect, useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useAuth } from "../auth";
 
 export const Book = () => {
   const [cart, setCart] = useState<BookType[]>([]);
@@ -15,7 +15,7 @@ export const Book = () => {
     }
   });
 
-  const navigate = useNavigate();
+  const auth = useAuth();
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -28,18 +28,19 @@ export const Book = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (book: BookType) => {
-    setCart([...cart, book]);
+  const addToCart = async (book: BookType) => {
+    const updatedCart = [...cart, book]; // Append the new book to the existing cart
+    setCart(updatedCart); 
     alert("Item added to cart!");
-    navigate({to: "/cartpage"}); 
+    const error = await db.from('cart').insert([{ author_id: auth.session?.user.id, book_id: book.book_id }]);
+    console.log(error);
   };
-
+  
   const buyNow = (book: BookType) => {
-    setCart([book]); // Replace the cart with only this book
-    alert("Item added to cart!");
-    navigate({to: "/cartpage"}); // Redirect to cart page after adding to cart
+    // Logic for handling buy now action...
+    alert("Buy now functionality is not implemented yet.");
   };
-
+  
   if (isFetching) {
     return null;
   }
