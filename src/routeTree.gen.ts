@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as ContactImport } from './routes/contact'
+import { Route as CheckoutImport } from './routes/checkout'
 import { Route as CartpageImport } from './routes/cartpage'
 import { Route as BooksImport } from './routes/books'
 import { Route as AboutImport } from './routes/about'
@@ -22,6 +23,11 @@ import { Route as AuthLoginImport } from './routes/auth.login'
 
 const ContactRoute = ContactImport.update({
   path: '/contact',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CheckoutRoute = CheckoutImport.update({
+  path: '/checkout',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -70,6 +76,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartpageImport
       parentRoute: typeof rootRoute
     }
+    '/checkout': {
+      preLoaderRoute: typeof CheckoutImport
+      parentRoute: typeof rootRoute
+    }
     '/contact': {
       preLoaderRoute: typeof ContactImport
       parentRoute: typeof rootRoute
@@ -88,6 +98,7 @@ export const routeTree = rootRoute.addChildren([
   AboutRoute,
   BooksRoute,
   CartpageRoute,
+  CheckoutRoute,
   ContactRoute,
   AuthLoginRoute,
 ])

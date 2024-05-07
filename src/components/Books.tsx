@@ -44,11 +44,7 @@ export const Book: React.FC<Props> = () => {
     console.log(error);
   };
 
-  const buyNow = (book: BookType) => {
-    // Logic for handling buy now action...
-    alert("Buy now functionality is not implemented yet.");
-  };
-
+  
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
@@ -72,7 +68,7 @@ export const Book: React.FC<Props> = () => {
         <input
           type="search"
           placeholder="Search"
-          className="w-[200px]  sm:w-[200px] group-hover:w-[300px] flex transition-all duration-500 px-2 py-1  rounded-full focus:outline-1 focus:border-1 bg-white border-black border-2 bor"
+          className="w-[200px]  sm:w-[200px] group-hover:w-[300px] flex transition-all duration-500 px-2 py-1  rounded-full focus:outline-1 focus:border-1 bg-white border-black border-2 bor"
           onChange={handleSearch}
           value={searchQuery}
         />
@@ -97,6 +93,7 @@ export const Book: React.FC<Props> = () => {
                     book.title
                   )}
                 </h2>
+                <p className="text-gray-600 font-medium mb-2">Price: ${book.price}</p>
                 <div className="flex items-center justify-between mt-4">
                   <button
                     onClick={() => addToCart(book)}
@@ -104,12 +101,6 @@ export const Book: React.FC<Props> = () => {
                   >
                     <ShoppingBag className="w-6 h-6 mr-2" />
                     Add to Cart
-                  </button>
-                  <button
-                    onClick={() => buyNow(book)}
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md flex items-center"
-                  >
-                    Buy Now
                   </button>
                 </div>
               </div>

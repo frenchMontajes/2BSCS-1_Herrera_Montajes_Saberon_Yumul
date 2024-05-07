@@ -6,5 +6,6 @@ export type BookType = {
   author_id: number;
   genre_id: number;
   publisher_id: number;
-  book_id: number;
+  book_id: number
+  price: number;
 }
