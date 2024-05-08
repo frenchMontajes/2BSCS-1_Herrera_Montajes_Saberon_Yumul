@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'; 
+import { useState } from 'react'; 
 import { db } from '../lib/supabase'; 
 import { CheckType } from '../types';
 import { Link } from '@tanstack/react-router';
@@ -14,7 +14,6 @@ const AddToCartPage = () => {
       const { data, error } = await db.from("cart").select("*, books!inner(*)");
       
       if(error) return [];
-      console.log(data);
       return data
     },
   });

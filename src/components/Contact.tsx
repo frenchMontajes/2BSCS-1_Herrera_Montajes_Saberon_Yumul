@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import emailjs from 'emailjs-com';
 
 export const Contact = () => {
@@ -14,8 +14,8 @@ export const Contact = () => {
           (result: { text: any; }) => {
             console.log(result.text);
             setIsSubmitting(false);
-            window.alert('Your message has been submitted successfully!'); // Show pop-up message
-            window.location.reload(); // Refresh the page
+            window.alert('Your message has been submitted successfully!');
+            window.location.reload(); 
           },
           (error: { text: any; }) => {
             console.log(error.text);

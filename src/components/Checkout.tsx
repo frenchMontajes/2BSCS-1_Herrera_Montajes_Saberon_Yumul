@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { PostgrestResponse, PostgrestError } from "@supabase/supabase-js";
 import { db } from "../lib/supabase";
-import { useAuth } from "../auth";
 import { BookType } from "../types";
 import Route from "../routes/checkout";
 
-interface CartItem {
-  book_id: string;
-}
 
 export const Checkout: React.FC = () => {
   const [cart, setCart] = useState<BookType[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [paymentMethod, setPaymentMethod] = useState<string>("");
-  const auth = useAuth();
   const search = Route.useSearch();
 
   useEffect(() => {

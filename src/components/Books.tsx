@@ -17,6 +17,7 @@ export const Book: React.FC<Props> = () => {
         .from("books")
         .select("*")
         .order("title", { ascending: true });
+        console.log(data)
       return data || [];
     },
   });
