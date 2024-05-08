@@ -1,13 +1,20 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { PostgrestResponse, PostgrestError } from "@supabase/supabase-js";
 import { db } from "../lib/supabase";
 import { useAuth } from "../auth";
 import { BookType } from "../types";
+import Route from "../routes/checkout";
 
-export const Checkout = () => {
+interface CartItem {
+  book_id: string;
+}
+
+export const Checkout: React.FC = () => {
   const [cart, setCart] = useState<BookType[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [paymentMethod, setPaymentMethod] = useState<string>("");
   const auth = useAuth();
+  const search = Route.useSearch();
 
   useEffect(() => {
     fetchCartItems();
@@ -15,52 +22,53 @@ export const Checkout = () => {
 
   useEffect(() => {
     const calculateTotalPrice = () => {
-      const totalPrice = cart.reduce((acc, book) => acc + book.price, 0);
-      setTotalPrice(parseFloat(totalPrice.toFixed(2)));
+      const total = cart.reduce((acc, book) => acc + book.price, 0);
+      setTotalPrice(total);
     };
     calculateTotalPrice();
   }, [cart]);
 
   const fetchCartItems = async () => {
     try {
-      const { data: cartItems } = await db
-        .from("cart")
-        .select("book_id")
-        .eq("user_id", auth.session?.user.id);
-      if (!cartItems) return; // Handle case where cartItems is null
+      const { data: fetchedBooks, error: booksError }: PostgrestResponse<BookType> =
+        await db.from("books").select("*").in("book_id", search.selectedItems.split(','));
 
-      const booksPromises = cartItems.map(async (cartItem) => {
-        const { data: book } = await db
-          .from("books")
-          .select("*")
-          .eq("book_id", cartItem.book_id)
-          .single();
-        return book;
-      });
+      if (booksError) throw booksError;
 
-      const books = await Promise.all(booksPromises);
+      if (!fetchedBooks) return;
 
-      setCart(books.filter((book) => book !== null));
+      setCart(fetchedBooks);
+
     } catch (error) {
-      console.error("Error fetching cart items:", (error as Error).message);
+      console.error("Error fetching cart items:", (error as PostgrestError).message);
     }
   };
+
 
   const handleCheckout = async () => {
-    try {
-      if (!paymentMethod) {
-        alert("Please select a payment method.");
-        return;
-      }
-
-      await db.from("cart").delete().eq("user_id", auth.session?.user.id);
-      setCart([]);
-      alert("Checkout successful!");
-    } catch (error) {
-      console.error("Error during checkout:", (error as Error).message);
-      alert("Error during checkout. Please try again later.");
+  try {
+    if (!paymentMethod) {
+      alert("Please select a payment method.");
+      return;
     }
-  };
+
+    setCart([]);
+
+    const { error } = await db.from("cart").delete().in("book_id", search.selectedItems.split(","))
+
+    if (error) {
+      console.error("Error during checkout:", (error as PostgrestError).message);
+      fetchCartItems(); 
+      alert("Error during checkout. Please try again later.");
+      return;
+    }
+
+    alert("Checkout successful!");
+  } catch (error) {
+    console.error("Error during checkout:", error);
+    alert("Error during checkout. Please try again later.");
+  }
+};
 
   const handlePaymentMethodChange = (
     e: React.ChangeEvent<HTMLSelectElement>
@@ -92,7 +100,7 @@ export const Checkout = () => {
                 value={paymentMethod}
                 onChange={handlePaymentMethodChange}
                 className="bg-red-500 hover:bg-red-600 text-white ml-7 px-4 py-2 rounded-md"
-                required // Make it required
+                required
               >
                 <option value="">Select Payment Method</option>
                 <option value="credit_card">Credit Card</option>
@@ -107,7 +115,7 @@ export const Checkout = () => {
             </div>
             <div className="flex items-center">
               <p className="text-2xl font-semibold">
-                Total Price: ${totalPrice}
+                Total Price: ${totalPrice.toFixed(2)}
               </p>
             </div>
           </div>
