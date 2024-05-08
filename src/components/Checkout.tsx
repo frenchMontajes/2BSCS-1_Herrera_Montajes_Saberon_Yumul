@@ -104,7 +104,7 @@ export const Checkout: React.FC = () => {
               >
                 <option value="">Select Payment Method</option>
                 <option value="credit_card">Credit Card</option>
-                <option value="paypal">PayPal</option>
+                <option value="gcash">Gcash</option>
               </select>
               <button
                 onClick={handleCheckout}
