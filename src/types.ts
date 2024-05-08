@@ -9,3 +9,11 @@ export type BookType = {
   book_id: number
   price: number;
 }
+
+export type CheckType = {
+  book_id: number;
+  books: BookType;
+  created_at: string;
+  id: number;
+  user_id: string;
+}

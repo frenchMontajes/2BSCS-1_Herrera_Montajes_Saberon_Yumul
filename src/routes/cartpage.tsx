@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Navbar } from '../components/navbar';
-import AddToCartPage from '../components/Addtocart1';
+import AddToCartPage from '../components/Addtocart';
 
 export const Route = createFileRoute('/cartpage')({
   component: Component, 
