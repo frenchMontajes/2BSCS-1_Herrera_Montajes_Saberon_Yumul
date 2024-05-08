@@ -38,6 +38,9 @@ export const Book: React.FC<Props> = () => {
     const updatedCart = [...cart, book];
     setCart(updatedCart);
     alert("Item added to cart!");
+    console.log(updatedCart);
+    console.log(auth.session?.user.id);
+    console.log(book.book_id);
     const error = await db.from("cart").insert([
       { user_id: auth.session?.user.id, book_id: book.book_id },
     ]);
