@@ -1,8 +1,8 @@
-Related Issues/Tasks (for linking the Jira Task here)
+- Related Issues/Tasks (for linking the Jira Task here)
 
 Example: [LM-X](https://vgonzales5157.atlassian.net/browse/LM-17?atlOrigin=eyJpIjoiZmVhNmE4NGQ0Zjg1NGYyZGExMjEyNjc0NDIxMTQ2MWEiLCJwIjoiaiJ9)
 
-Checkbox
+- Checkbox
 
 [ ] - I set the PR title based on the following format: {task_type}/{task_id}-{task_name} . e.g. feat/LM-X-add-new-functionality (camelCase)
 
