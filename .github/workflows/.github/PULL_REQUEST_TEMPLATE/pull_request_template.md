@@ -4,9 +4,9 @@ Example: [LM-X](https://vgonzales5157.atlassian.net/browse/LM-17?atlOrigin=eyJpI
 
 - Checkbox
 
-[ ] - I set the PR title based on the following format: {task_type}/{task_id}-{task_name} . e.g. feat/LM-X-add-new-functionality (camelCase)
+[x] - I set the PR title based on the following format: {task_type}/{task_id}-{task_name} . e.g. feat/LM-X-add-new-functionality (camelCase)
 
-[ ] - I set the branch name based on the following format: {branch_type}/{task_id}-{task_name}. e.g feat/LM-X-add-new-functionality
+[x] - I set the branch name based on the following format: {branch_type}/{task_id}-{task_name}. e.g feat/LM-X-add-new-functionality
 
 [ ] - I set KuroXI as the reviewer and assignee of this PR
 
