@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "../lib/supabase";
-import { Search, ShoppingCart, User } from "lucide-react";
+import { ShoppingCart, User } from "lucide-react";
 
 const Menu = [
   {
@@ -34,7 +34,6 @@ export const Navbar = () => {
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
-    // Fetch cart items count from database
     async function fetchCartCount() {
       try {
         const { data: cartItems, error } = await db.from("cart").select("book_id", { count: "exact" });
@@ -42,7 +41,6 @@ export const Navbar = () => {
           console.error("Error fetching cart count:", error);
           return;
         }
-        // Set cart count based on the length of cartItems array
         setCartCount(cartItems?.length || 0);
       } catch (error) {
         console.error("Error fetching cart count:", error);
